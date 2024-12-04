@@ -1,0 +1,21 @@
+#uploadProductSection{
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+}
+
+form label{
+      display: block;
+      padding: 4px 0px;
+}
+
+form {
+      border: 2px solid black;
+      padding: 20px;
+}
+
+form input,textarea{
+     width:100%
+}
