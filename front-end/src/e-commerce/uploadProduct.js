@@ -52,7 +52,7 @@ function UploadProduct() {
             }
     
     
-             axios.post("http://localhost:8080/uploadImage", { ...productData, Photo: imageURLS } , {headers}).then((res)=>{
+             axios.post("https://mernecommerce-22ox.onrender.com/uploadImage", { ...productData, Photo: imageURLS } , {headers}).then((res)=>{
                   console.log(res)
              }).catch((err)=>{
                    console.log(err)

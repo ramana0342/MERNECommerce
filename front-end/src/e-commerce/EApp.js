@@ -21,7 +21,7 @@ useEffect(()=>{
   const headers = {
       "Authorization": `${token}`
   }
-  axios.get("http://localhost:8080/getUserData" , {headers}).then((res)=>{
+  axios.get("https://mernecommerce-22ox.onrender.com/getUserData" , {headers}).then((res)=>{
         if(res.data.CartItems){
            setUserCartData(res.data.CartItems)
         }
@@ -30,7 +30,7 @@ useEffect(()=>{
 },[])
 
 useEffect(()=>{
-  axios.get("http://localhost:8080/getProductsData").then((res)=>{
+  axios.get("https://mernecommerce-22ox.onrender.com/getProductsData").then((res)=>{
      // console.log(res.data.productsData)
       if(res.data.Message == "Success"){
               setProductData(res.data.productsData)

@@ -30,7 +30,7 @@ function Cart() {
    const headers = {
 "Authorization": `${token}`
   }
-     axios.put(`http://localhost:8080/addCartItem/${id}`, {action:actionPerform}, {headers}).then((res)=>{
+     axios.put(`https://mernecommerce-22ox.onrender.com/addCartItem/${id}`, {action:actionPerform}, {headers}).then((res)=>{
           console.log(res)
            if(res.data.result){
              setUserCartData( res.data.result.CartItems);
