@@ -3,12 +3,12 @@ import { useContext } from 'react'
 import { store } from './EApp'
 import SheimerEffect from './sheimerEffect'
 
-function AllProducts({CartButton,AddtoCartFun,productData}) {
+function AllProducts({CartButton,AddtoCartFun}) {
    
-
+   const {adminproductData,setAdminProductData} = useContext(store)
   return (
     <div class="row row-cols-1 row-cols-md-3 g-4">
-     {productData.length>0 ? productData.map((product,index)=>{
+     {adminproductData.length>0 ? adminproductData.map((product,index)=>{
        //    {console.log(product)}
                             return(<>
                                              

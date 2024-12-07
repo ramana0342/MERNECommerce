@@ -3,20 +3,22 @@ import React from 'react'
 import { useState } from 'react'
 import axios from "axios"
 import "./uploadproduct.css";
+import { store } from './EApp';
+import { useContext } from 'react';
 
 function UploadProduct() {
   
         
- 
+        const {adminproductData,setAdminProductData} = useContext(store)
     
       
         const [productData,setProductData] = useState({Title:"",Description:"",Price:null, Rating:null, Photo:[],Category:"",subCategory:"",Brand:""})
         const [imageFile,setImageFiles] = useState({Photo:[]})
         const [fileSizeError,setFileSizeError] = useState()
-    
+        const [uploadBtnStatus,setUploadBtnStatus] = useState()
     
         const  handleSubmit=async(e)=>{
-             
+             setUploadBtnStatus("Loading...")
              e.preventDefault()
              let token = JSON.parse(sessionStorage.getItem("adminToken"))
              if(token){
@@ -54,6 +56,11 @@ function UploadProduct() {
     
              axios.post("https://mernecommerce-22ox.onrender.com/uploadImage", { ...productData, Photo: imageURLS } , {headers}).then((res)=>{
                   console.log(res)
+                  if(res.data.Messege=="Success"){
+                  setAdminProductData([...adminproductData,res.data.responceData])
+                  setUploadBtnStatus()
+                 setProductData({Title:"",Description:"",Price:null, Rating:null, Photo:[],Category:"",subCategory:"",Brand:""})
+                  }
              }).catch((err)=>{
                    console.log(err)
              })
@@ -104,43 +111,46 @@ function UploadProduct() {
     
         <div>
           <label>Title:</label>
-          <input type='text' required  onChange={(e)=>{ handleChaneg("Title",e.target.value)}}/>
+          <input value={productData.Title} type='text' required  onChange={(e)=>{ handleChaneg("Title",e.target.value)}}/>
         </div>
     
         <div>
           <label>Description:</label>
-          <textarea required  onChange={(e)=>{ handleChaneg("Description",e.target.value)}} />
+          <textarea value={productData.Description} required  onChange={(e)=>{ handleChaneg("Description",e.target.value)}} />
         </div>
     
         <div>
           <label>Price:</label>
-          <input type='number'  onChange={(e)=>{ handleChaneg("Price",e.target.value)}} />
+          <input value={productData.Price} type='number'  onChange={(e)=>{ handleChaneg("Price",e.target.value)}} />
         </div>
     
     
         <div>
           <label>Rating:</label>
-          <input type="number" step="0.1" min="0" max="5" required  onChange={(e)=>{ handleChaneg("Rating",e.target.value)}}/>
+          <input value={productData.Rating} type="number" step="0.1" min="0" max="5" required  onChange={(e)=>{ handleChaneg("Rating",e.target.value)}}/>
         </div>
 
         <div>
           <label>Category:</label>
-          <input type='text'  onChange={(e)=>{ handleChaneg("Category",e.target.value)}} />
+          <input value={productData.Category} type='text'  onChange={(e)=>{ handleChaneg("Category",e.target.value)}} />
         </div>
 
         <div>
           <label>Sub Category:</label>
-          <input type='text'  onChange={(e)=>{ handleChaneg("subCategory",e.target.value)}} />
+          <input value={productData.subCategory} type='text'  onChange={(e)=>{ handleChaneg("subCategory",e.target.value)}} />
         </div>
 
         <div>
           <label>Brand:</label>
-          <input type='text'  onChange={(e)=>{ handleChaneg("Brand",e.target.value)}} />
+          <input value={productData.Brand} type='text'  onChange={(e)=>{ handleChaneg("Brand",e.target.value)}} />
         </div>
     
     
       
-        <div style={{textAlign:"center",padding:"6px"}}><button type='submit'>Upload</button></div>
+        <div style={{textAlign:"center",padding:"6px"}}>{uploadBtnStatus ? <button class="btn btn-info" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Uploading...</span>
+</button> : <button type="submit button" class="btn btn-primary">Upload</button>}</div>
         </form>
         </section>
         </>

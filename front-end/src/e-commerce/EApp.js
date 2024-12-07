@@ -10,7 +10,7 @@ export const store= createContext()
 function EApp() {
  
 const [userCartData,setUserCartData] = useState([])
-const [productData,setProductData] = useState([])
+const [adminproductData,setAdminProductData] = useState([])
 
 //console.log(true)
 useEffect(()=>{
@@ -33,7 +33,7 @@ useEffect(()=>{
   axios.get("https://mernecommerce-22ox.onrender.com/getProductsData").then((res)=>{
      // console.log(res.data.productsData)
       if(res.data.Message == "Success"){
-              setProductData(res.data.productsData)
+        setAdminProductData(res.data.productsData)
       }
   }).catch((err)=>{
       console.log(err)
@@ -43,7 +43,7 @@ useEffect(()=>{
 
   return (
     <>
-     <store.Provider value={{userCartData,setUserCartData,productData,setProductData}}>
+     <store.Provider value={{userCartData,setUserCartData,adminproductData,setAdminProductData}}>
     <BrowserRouter>
       
     <Index/>
