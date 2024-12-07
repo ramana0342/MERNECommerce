@@ -39,12 +39,12 @@ function Cart() {
    //  console.log("123")
      let token = JSON.parse(sessionStorage.getItem("Token"))
      if(token){
-       console.log(token)
+      // console.log(token)
    const headers = {
 "Authorization": `${token}`
   }
      axios.put(`https://mernecommerce-22ox.onrender.com/addCartItem/${product.productId}`, {action:actionPerform}, {headers}).then((res)=>{
-          console.log(res)
+       //   console.log(res)
            if(res.data.result){
              setUserCartData( res.data.result.CartItems);
             

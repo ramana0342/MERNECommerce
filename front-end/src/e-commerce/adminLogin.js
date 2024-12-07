@@ -35,7 +35,7 @@ const AdminLogin = () => {
   const LoginEvent = () => {
     setloginBtnstatus(true)
     axios.post("https://mernecommerce-22ox.onrender.com/adminLogin", userLogin).then((res) => {
-   console.log(res.data)
+  // console.log(res.data)
       if (res.data.Success) {
         setLoginError("")
         setLoginStatus(true)

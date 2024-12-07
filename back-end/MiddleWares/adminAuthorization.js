@@ -7,9 +7,9 @@ const { findById } = require("../Model/user");
     let Token = req.headers.authorization;
      if(Token){
     let tokenResult = jwt.verify(Token,"Shh")
-    console.log(tokenResult)
+   // console.log(tokenResult)
     let userExist = await adminData.findById(tokenResult.userID)
-    console.log(userExist)
+    //console.log(userExist)
         if(userExist){
           next()
         }else{

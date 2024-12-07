@@ -81,13 +81,13 @@ const router= express.Router();
  router.put("/addCartItem/:id", async(req,res)=>{
                       const cartItemId = req.params.id 
                       const { action } = req.body;
-                      console.log(req.body)
+                   //   console.log(req.body)
                      // console.log(cartItemId)
                      // console.log(usersData)
                      let Token = req.headers.authorization;
                       let tokenResult = jwt.verify(Token, "Shh");
                       let userData = await usersData.findById(tokenResult.userID)
-                      console.log(userData)
+                     // console.log(userData)
                  
 
                   if(userData){

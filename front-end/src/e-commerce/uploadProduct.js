@@ -41,7 +41,7 @@ function UploadProduct() {
                    return responce.data.secure_url
     
                          })
-                  console.log(imageURLS)
+                 // console.log(imageURLS)
         
               setProductData((prevData)=> ({...prevData,Photo:imageURLS}))
     
@@ -55,7 +55,7 @@ function UploadProduct() {
     
     
              axios.post("https://mernecommerce-22ox.onrender.com/uploadImage", { ...productData, Photo: imageURLS } , {headers}).then((res)=>{
-                  console.log(res)
+                //  console.log(res)
                   if(res.data.Messege=="Success"){
                   setAdminProductData([...adminproductData,res.data.responceData])
                   setUploadBtnStatus()
@@ -74,10 +74,10 @@ function UploadProduct() {
     
         const handleChangeImage = (field,value)=>{
           setFileSizeError()
-          console.log(value)
+        //  console.log(value)
           if(value.size <= 262144){
                
-          console.log(value)
+       //   console.log(value)
           setImageFiles({...imageFile, [field]:[...imageFile.Photo,value]})
           }else{
              setFileSizeError(true)

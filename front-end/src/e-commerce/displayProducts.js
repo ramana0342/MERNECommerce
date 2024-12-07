@@ -57,7 +57,7 @@ function DisplayProducts() {
               [productItem._id]: "loading"});
               let token = JSON.parse(sessionStorage.getItem("Token"))
               if(token){
-                console.log(token)
+              //  console.log(token)
             const headers = {
       "Authorization": `${token}`
            }

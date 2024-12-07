@@ -20,7 +20,7 @@ const UserRegister = () => {
     setRegisterStatus(null)
         setError(null)
     setUserData({ ...userData, [field]: value })
-    console.log(value)
+   // console.log(value)
   }
 
   const SignUpBtnEvent = () => {
@@ -37,7 +37,7 @@ const UserRegister = () => {
 
       } else {
         setRegisterStatus(null)
-        console.log(res)
+        //console.log(res)
         setError(res.data.ERROR)
         setBtnStatus()
         //console.log(Error)
