@@ -19,7 +19,7 @@ app.use(adminRouter)
 
 
 
-mongoose.connect("mongodb+srv://ramanareddym0342:Ramana799@ecommercedata.tz3aa.mongodb.net/?retryWrites=true&w=majority&appName=ECommerceData").then(()=>{
+mongoose.connect("mongodb+srv://ramanareddym0342:Ramana799@ecommercedata.tz3aa.mongodb.net/?appName=ECommerceData").then(()=>{
     console.log("DB Connected")
 })
 
