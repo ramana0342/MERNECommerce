@@ -1,4 +1,5 @@
 
+require("dotenv").config();
 const express = require("express")
 const app = express()
 const mongoose= require("mongoose")
@@ -19,7 +20,7 @@ app.use(adminRouter)
 
 
 
-mongoose.connect("mongodb+srv://ramanareddym0342:Ramana799@ecommercedata.tz3aa.mongodb.net/?appName=ECommerceData").then(()=>{
+mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("DB Connected")
 })
 
