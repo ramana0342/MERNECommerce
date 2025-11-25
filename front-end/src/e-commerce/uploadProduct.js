@@ -17,74 +17,77 @@ function UploadProduct() {
   const [fileSizeError, setFileSizeError] = useState()
   const [uploadBtnStatus, setUploadBtnStatus] = useState()
 
+
+
   const handleSubmit = async (e) => {
-    setUploadBtnStatus("Loading...")
-    e.preventDefault()
-    let token = JSON.parse(sessionStorage.getItem("adminToken"))
-    if (token) {
+    e.preventDefault();
+    setUploadBtnStatus("Loading...");
 
-      let promices = imageFile.Photo.map((file, index) => {
+    let token = JSON.parse(sessionStorage.getItem("adminToken"));
+    if (!token) return window.alert("You are not Admin");
 
-        const imageFormData = new FormData()
+    const formData = new FormData();
+    formData.append("Title", productData.Title);
+    formData.append("Description", productData.Description);
+    formData.append("Price", productData.Price);
+    formData.append("Rating", productData.Rating);
+    formData.append("Category", productData.Category);
+    formData.append("subCategory", productData.subCategory);
+    formData.append("Brand", productData.Brand);
 
-        imageFormData.append('file', file);
-        imageFormData.append('upload_preset', 'myrr_image_upload');
+    imageFile.Photo.forEach(file => formData.append("Photo", file));
 
+    try {
+      const res = await axios.post(
+        //"http://localhost:8080/upload/product",
+        "https://mernecommerce-22ox.onrender.com/upload/product",
+        formData,
+        {
+          headers: {
+            Authorization: token,
+          }
+        }
+      );
 
-        return axios.post('https://api.cloudinary.com/v1_1/dvfy5rpzk/image/upload', imageFormData)
+      if (res.data.messege === "Success") {
+        setAdminProductData([...adminproductData, res.data.responseData]);
 
-      })
-
-      let Responces = await Promise.all(promices)
-
-      let imageURLS = Responces.map((responce, index) => {
-        return responce.data.secure_url
-
-      })
-      // console.log(imageURLS)
-
-      setProductData((prevData) => ({ ...prevData, Photo: imageURLS }))
-
-      //    console.log(productData)
-
-
-
-      const headers = {
-        "Authorization": `${token}`
+        setProductData({ Title: "", Description: "", Price: "", Rating: "", Photo: [], Category: "", subCategory: "", Brand: "" });
+        setImageFiles({ Photo: [] });
+        setUploadBtnStatus("");
       }
 
-
-      axios.post("https://mernecommerce-22ox.onrender.com/uploadImage", { ...productData, Photo: imageURLS }, { headers }).then((res) => {
-        //  console.log(res)
-        if (res.data.Messege == "Success") {
-          setAdminProductData([...adminproductData, res.data.responceData])
-          setUploadBtnStatus()
-          setProductData({ Title: "", Description: "", Price: null, Rating: null, Photo: [], Category: "", subCategory: "", Brand: "" })
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    } else {
-      window.alert("Your Not Admin")
+    } catch (error) {
+      console.log(error);
+      setUploadBtnStatus("");
     }
+  };
 
 
-  }
 
 
-  const handleChangeImage = (field, value) => {
-    setFileSizeError()
-    //  console.log(value)
-    if (value.size <= 262144) {
+  const handleChangeImage = (field, files) => {
+    setFileSizeError(false);
 
-      //   console.log(value)
-      setImageFiles({ ...imageFile, [field]: [...imageFile.Photo, value] })
+    const validFiles = [];
+    let valid = true;
+
+    Array.from(files).forEach(file => {
+      if (file.size <= 262144) {  // Max File Size 256 KB
+        validFiles.push(file);
+      } else {
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      setFileSizeError(true);
+      setImageFiles({ Photo: [] });
     } else {
-      setFileSizeError(true)
-      setImageFiles({ Photo: [] })
-
+      setImageFiles(prev => ({ Photo: [...prev.Photo, ...validFiles] }));
     }
-  }
+  };
+
 
 
 
@@ -102,7 +105,18 @@ function UploadProduct() {
         <form onSubmit={handleSubmit} className='upload-product-form'>
           <div>
             <label>Upload Image:</label>
-            <input type="file" accept="image/*" className='upload-file-input-field' required onChange={(e) => handleChangeImage("Photo", e.target.files[0])} />
+
+            <input
+              type="file"
+              name="Photo"
+              accept="image/*"
+              multiple
+              className='upload-file-input-field'
+              required
+              onChange={(e) => handleChangeImage("Photo", e.target.files)}
+            />
+
+
             {fileSizeError ? <b>Min File Size 256KB</b> : ""}
           </div>
 
@@ -122,10 +136,10 @@ function UploadProduct() {
           </div>
 
 
-          {/* <div>
+          <div>
             <label>Rating:</label>
             <input value={productData.Rating} type="number" step="0.1" min="0" max="5" required onChange={(e) => { handleChaneg("Rating", e.target.value) }} />
-          </div> */}
+          </div>
 
           <div>
             <label>Category:</label>
