@@ -1,7 +1,7 @@
 import React from 'react'
 import SheimerEffect from './sheimerEffect'
 
-function FilterProducts({CartButton,AddtoCartFun,filterData}) {
+function FilterProducts({CartButton,filterData}) {
   return (
     <div class="row row-cols-1 row-cols-md-3 g-4">
      {filterData.length>0 ? filterData.map((product,index)=>{

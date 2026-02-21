@@ -47,7 +47,7 @@ function Index() {
 
 <div class="mainNavBar" style={{display:"flex",justifyContent:"space-evenly"}}>
        <NavLink to="/" className="navlinks"><b>Home</b></NavLink> 
-       <NavLink to="/userCart"  className="navlinks"><b>Cart {userToken ?  - userCartData.length :""}</b></NavLink>
+       <NavLink to="/userCart"  className="navlinks"><b>Cart{userToken ?  ` - ${userCartData.length}` :""}</b></NavLink>
        <NavLink to= "/adminLogin" className="navlinks"><b>Admin</b></NavLink>
        {/* <NavLink to="/uploadProducts" className="navlinks"><b>uploadProduct</b></NavLink>  */}
      {LoginStatus ? <NavLink className="navlinks" > <b onClick={()=>{LogOutFun()}}>LogOut</b> </NavLink> :  <NavLink to="/loginUser" className="navlinks" > <b>LogIn</b></NavLink>}
