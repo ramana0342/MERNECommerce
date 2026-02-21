@@ -27,13 +27,13 @@ function Cart() {
 
    function cartItemFun(actionPerform,product){
          
-         if(actionPerform=="REMOVE"){
+         if(actionPerform==="REMOVE"){
           setRemoveBtnStatus(product.productId)
          }
-         if(actionPerform=="DECREASE" && product.quantity>1){
+         if(actionPerform==="DECREASE" && product.quantity>1){
          setDecreaseBtnStatus(product.productId)
          }
-         if(actionPerform=="INCREASE"){
+         if(actionPerform==="INCREASE"){
           setIncreaseBtnStatus(product.productId)
          }
    //  console.log("123")
@@ -48,13 +48,13 @@ function Cart() {
            if(res.data.result){
              setUserCartData( res.data.result.CartItems);
             
-             if(actionPerform=="REMOVE"){
+             if(actionPerform==="REMOVE"){
               setRemoveBtnStatus()
              }
-             if(actionPerform=="DECREASE" && product.quantity>1){
+             if(actionPerform==="DECREASE" && product.quantity>1){
               setDecreaseBtnStatus()
               }
-              if(actionPerform=="INCREASE"){
+              if(actionPerform==="INCREASE"){
                 setIncreaseBtnStatus()
                }
            }
@@ -63,7 +63,7 @@ function Cart() {
    }
 
 const DecreaseBtnFun = (product)=>{
-           if(product.productId==decreaseBtnStatus){
+           if(product.productId===decreaseBtnStatus){
                 return <button><div class="spinner-border text-danger" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div></button>
@@ -73,7 +73,7 @@ const DecreaseBtnFun = (product)=>{
 }
 
 const IncreaseBtnFun = (product)=>{
-  if(product.productId==increaseBtnStatus){
+  if(product.productId===increaseBtnStatus){
        return <button><div class="spinner-border text-danger" role="status">
        <span class="visually-hidden">Loading...</span>
      </div></button>
@@ -106,7 +106,7 @@ const IncreaseBtnFun = (product)=>{
                                  <h5>Price={product.price}</h5>
                                  <span>{DecreaseBtnFun(product)}Qty-<span id="productQty">{product.quantity}</span>{IncreaseBtnFun(product)}</span>
                                  <p>Item Total Cost ({product.quantity}) = <b>{product.quantity*product.price}</b></p>
-                                 {product.productId == removeBtnStatus ? <button class="btn btn-warning" type="button" disabled>
+                                 {product.productId === removeBtnStatus ? <button class="btn btn-warning" type="button" disabled>
   <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
   <span role="status">Loading...</span>
 </button> : <button type="button" class="btn btn-primary" onClick={()=>{cartItemFun("REMOVE" , product)}}>Remove</button> }

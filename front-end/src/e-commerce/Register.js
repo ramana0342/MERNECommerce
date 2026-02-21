@@ -79,7 +79,7 @@ const UserRegister = () => {
           :<button onClick={() => {SignUpBtnEvent()}} type="submit" class="btn btn-primary signBtn" id="submit">SignUp</button>}
         </div>
         <div style={{ marginTop: "10px", textAlign: "center" }}><b>Already have An Account ?</b><br /> <NavLink to="/loginUser"><b>LOGIN</b></NavLink></div>
-        {RegisterStatus == true ? <><br /><b style={{ color: "green", textAlign: "center" }}>User Registered Succesfully</b></> : ""}
+        {RegisterStatus === true ? <><br /><b style={{ color: "green", textAlign: "center" }}>User Registered Succesfully</b></> : ""}
         {Error ? <><br/><b style={{ color: "red", textAlign: "center" }}>{Error}</b></> : ""}
 
       </div>

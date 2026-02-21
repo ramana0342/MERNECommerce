@@ -32,7 +32,7 @@ function EApp() {
       "https://mernecommerce-22ox.onrender.com/getProductsData"
       // "http://localhost:8080/getProductsData",
     ).then((res) => {
-      if (res.data.message == "Success") {
+      if (res.data.message === "Success") {
         setAdminProductData(res.data.productsData)
       }
     }).catch((err) => {

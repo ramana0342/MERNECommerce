@@ -71,7 +71,7 @@ const UserLogin = ({ LoginStatus, setLoginStatus }) => {
             :<button onClick={() => { LoginEvent() }} type="submit" class="btn btn-primary" id="submit">LogIn</button> }
         </div>
         <div style={{ marginTop: "10px", textAlign: "center" }}><b>Don't have An Account ?</b><br /> <NavLink to="/RegisterUser"><b>REGISTER</b></NavLink></div>
-        <div>{LoginStatus == true ? <b style={{ color: "green" }}>Logged Succesfully , Plese Wait</b> : ""}
+        <div>{LoginStatus === true ? <b style={{ color: "green" }}>Logged Succesfully , Plese Wait</b> : ""}
           {LoginError ? <b style={{ color: "red" }}>{LoginError}</b> : ""}
         </div>
       </div>

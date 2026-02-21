@@ -108,9 +108,9 @@ function DisplayProducts() {
   const displayProductsFun = () => {
     if (searchInput != "" && filterData.length > 0) {
       return <FilterProducts filterData={filterData} CartButton={CartButton} />
-    } else if (searchInput != "" && filterData.length == 0) {
+    } else if (searchInput != "" && filterData.length === 0) {
       return <div style={{ display: "flex", height: "70vh", justifyContent: "center", alignItems: "center" }}><h1>No Product Found</h1></div>
-    } else if (searchInput == "") {
+    } else if (searchInput === "") {
       return <AllProducts CartButton={CartButton} />
     }
   }
