@@ -12,8 +12,7 @@ function DisplayProducts() {
 
   const [filterData, setFilterData] = useState([])
   const [searchInput, setSearchInput] = useState("")
-  const { userCartData, setUserCartData } = useContext(store)
-  const { adminproductData } = useContext(store)
+  const { userCartData, setUserCartData , adminproductData } = useContext(store)
 
   const [cartBtnStatus, setCartBtnStatus] = useState({});
 
@@ -45,7 +44,7 @@ function DisplayProducts() {
     }
 
     // THEN CHECK IF ALREADY IN CART
-    const isExist = userCartData.find(
+    const isExist = userCartData?.find(
       item => product._id === item.productId
     )
     if (isExist) {

@@ -16,7 +16,7 @@ const UserLogin = ({ LoginStatus, setLoginStatus }) => {
   const [LoginError, setLoginError] = useState("")
   const [loginBtnstatus,setloginBtnstatus] = useState()
 
-  let {userCartData,setUserCartData} = useContext(store)
+  let {setUserCartData} = useContext(store)
 
   
   

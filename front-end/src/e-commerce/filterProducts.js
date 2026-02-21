@@ -10,7 +10,7 @@ function FilterProducts({CartButton,filterData}) {
                                              
   <div class="col" style={{padding:"0px 50px"}}>
     <div class="productCard card h-100">
-      <img className="productImg" src={product.Photo[0]}  />
+      <img className="productImg" src={product.Photo[0]} alt = ""  />
       <div class="card-body">
         <h5 class="card-title">{product.Title.slice(0,101)}...</h5>
         <p class="card-text" style={{margin:"0px",padding:"0px",display:"flex" , alignItems:"center"}}>
