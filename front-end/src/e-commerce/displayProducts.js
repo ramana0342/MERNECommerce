@@ -97,18 +97,14 @@ function DisplayProducts() {
 
   const filterProductsFun = (e) => {
     setSearchInput(e.target.value)
-    let filterProducts = adminproductData.filter((product) => {
-      if (`${product.Title}${product.Description}${product.Category}${product.subCategory}${product.Brand}`.toLowerCase().includes(e.target.value.toLowerCase())) {
-        return true
-      }
-    })
+    let filterProducts = adminproductData.filter((product) => `${product.Title}${product.Description}${product.Category}${product.subCategory}${product.Brand}`.toLowerCase().includes(e.target.value.toLowerCase()))
     setFilterData(filterProducts)
   }
 
   const displayProductsFun = () => {
-    if (searchInput != "" && filterData.length > 0) {
+    if (searchInput !== "" && filterData.length > 0) {
       return <FilterProducts filterData={filterData} CartButton={CartButton} />
-    } else if (searchInput != "" && filterData.length === 0) {
+    } else if (searchInput !== "" && filterData.length === 0) {
       return <div style={{ display: "flex", height: "70vh", justifyContent: "center", alignItems: "center" }}><h1>No Product Found</h1></div>
     } else if (searchInput === "") {
       return <AllProducts CartButton={CartButton} />

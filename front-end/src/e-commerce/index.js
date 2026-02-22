@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes,Route, NavLink, Navigate} from "react-router-dom"
+import {Routes,Route, NavLink} from "react-router-dom"
 import DisplayProducts from './displayProducts';
 import UploadProduct from './uploadProduct';
 import UserLogin from './userLogin';
@@ -7,8 +7,6 @@ import UserRegister from './Register';
 import "./App.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import axios from 'axios';
 import { store } from './EApp';
 import { useContext } from 'react';
 import Cart from './cart';
